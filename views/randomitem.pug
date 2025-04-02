@@ -2,3 +2,16 @@ extends layout
 
 block content
   h1= title
+
+  - let image_names = ['dragon1.jpg', 'dragon2.jpg', 'dragon3.jpg', 'dragon4.jpg', 'dragon5.jpg']
+
+  - for (let i = 0; i < 3; i++) {
+    - const randomVal = Math.floor(Math.random() * 5)
+    - const image = image_names[randomVal]
+    img(
+      src = `/images/${image}`,
+      alt = `${image}`,
+      width = "300",
+      height = "300"
+    )
+  - }
