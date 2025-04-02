@@ -2,3 +2,24 @@ extends layout
 
 block content
   h1= title
+
+  p Rows: #{query.rows}
+  p Columns: #{query.cols}
+
+  - var rows = Number(query.rows)
+  - var cols = Number(query.cols)
+
+  if (!Number.isInteger(rows) || !Number.isInteger(cols))
+    p Rows and Columns have to be Integers
+  else if (rows < 3 || rows > 13)
+    p Rows must be a value between 3 and 13
+  else if (col < 3 || cols > 13)
+    p Columns must be a value between 3 and 13
+  else
+    table#outer
+      - for(let i = 0; i < rows; i++) {
+        tr#middle
+          - for(let j = 0; j < cols; j++) {
+            td= (i - j)
+          - }
+      - }
