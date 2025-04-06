@@ -4,11 +4,40 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config();
+const connectionString = process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function(){
+console.log("Connection to DB succeeded")});
+
+var Dragon = require("./models/dragon");
+
+async function recreateDB(){
+  await Dragon.deleteMany();
+
+  let instance1 = new Dragon({name:"William", color:'Blue', age:42});
+  let instance2 = new Dragon({name:"Goblin", color:'Green', age:16});
+  let instance3 = new Dragon({name:"Charles", color:'Orange', age:3});
+
+  instance1.save().then(doc=>{console.log("First object saved")}).catch(err=>{console.error(err)});
+  instance2.save().then(doc=>{console.log("Second object saved")}).catch(err=>{console.error(err)});
+  instance3.save().then(doc=>{console.log("Third object saved")}).catch(err=>{console.error(err)});
+}
+let reseed = true;
+if (reseed) {recreateDB();}
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var dragonsRouter = require('./routes/dragons');
 var gridRouter = require('./routes/grid');
 var pickRouter = require('./routes/pick');
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -27,6 +56,7 @@ app.use('/users', usersRouter);
 app.use('/dragons', dragonsRouter);
 app.use('/grid', gridRouter);
 app.use('/pick', pickRouter);
+app.use('/resource', resourceRouter);
 
 
 // catch 404 and forward to error handler
