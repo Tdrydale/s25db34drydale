@@ -30,4 +30,15 @@ exports.dragon_list = async function(req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
+
+exports.dragon_view_all_Page = async function(req, res) {
+    try{
+        theDragons = await Dragon.find();
+        res.render('dragons', { title: 'Dragon Search Results', results: theDragons });
+    }
+    catch(err){
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
+};
     

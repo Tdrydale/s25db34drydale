@@ -3,15 +3,11 @@ extends layout
 block content
   h1= title
   -
-    var results = [
-      { name: "William", color: "Blue", age: 42 },
-      { name: "Golbin", color: "Green", age: 16 },
-      { name: "Charles", color: "Orange", age: 3 }
-    ]
+    let items = results
 
   div.container-fluid
     div.row
-      each item in results
+      each item in items
         div.col-sm-2
           h4 #{item.name}
           p Color: #{item.color}
