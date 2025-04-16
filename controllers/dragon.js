@@ -102,6 +102,18 @@ exports.dragon_create_Page = function(req, res) {
         res.send(`{'error': '${err}'}`);
     }
 };
+
+exports.dragon_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+        let result = await Dragon.findById(req.query.id)
+        res.render('dragonupdate', { title: 'Dragon Update', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
     
     
   

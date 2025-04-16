@@ -11,5 +11,6 @@ router.get('/', function(req, res, next) {
 router.get('/', dragon_controller.dragon_view_all_Page );
 router.get('/detail', dragon_controller.dragon_view_one_Page);
 router.get('/create', dragon_controller.dragon_create_Page);
+router.get('/update', dragon_controller.dragon_update_Page);
 
 module.exports = router;
