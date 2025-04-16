@@ -9,5 +9,6 @@ router.get('/', function(req, res, next) {
 */
 
 router.get('/', dragon_controller.dragon_view_all_Page );
+router.get('/detail', dragon_controller.dragon_view_one_Page)
 
 module.exports = router;

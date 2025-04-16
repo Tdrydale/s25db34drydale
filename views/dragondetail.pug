@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  - let dragonid = toShow._id
+  - let name = toShow.name
+  - let color = toShow.color
+  - let age = toShow.age
+  div
+    div.row
+      div(class='dragonAttr mr-3') Dragon ID is:
+      div #{dragonid}
+    div.row
+      div(class='dragonAttr mr-3') Dragon Name is:
+      div #{name}
+    div.row
+      div(class='dragonAttr mr-3') Dragon Color is:
+      div #{color}
+    div.row
+      div(class='dragonAttr mr-3') Dragon Age is:
+      div #{age}

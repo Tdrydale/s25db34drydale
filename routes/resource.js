@@ -11,6 +11,7 @@ router.delete('/dragons/:id', dragon_controller.dragon_delete);
 router.put('/dragons/:id', dragon_controller.dragon_update_put);
 router.get('/dragons/:id', dragon_controller.dragon_detail);
 router.get('/dragons', dragon_controller.dragon_list);
+router.get('/detail/:id', dragon_controller.dragon_view_one_Page);
 module.exports = router;
 
 exports.api = function(req, res) {
