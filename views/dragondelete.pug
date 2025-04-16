@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let dragonid = toShow._id
+    - let name = toShow.name
+    - let color = toShow.color
+    - let age = toShow.age
+    - let actionid = "/resource/dragons/" + dragonid
+    script let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='dragonAttr mr-3') Dragon ID is:
+        div #{dragonid}
+      div.row
+        div(class='dragonAttr mr-3') Dragon Name is:
+        div #{name}
+      div.row
+        div(class='dragonAttr mr-3') Dragon Color is:
+        div #{age}
+      div.row
+        div(class='dragonAttr mr-3') Dragon Age is:
+        div #{color}
+
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+  script.
+    function cancel() {
+      window.location.href='/dragons'
+    }
+  script.
+    function deleteOnid() {
+      console.log("starting delete")
+      fetch(actionid, {
+        method: 'DELETE'
+      }).then((resp) => {
+        return resp.json();
+      }).then((body) => {
+        alert("Delete succeded")
+        window.location.href='/dragons'
+      }).catch((error) => {
+        alert("Delete failed " + error )
+      });
+    }

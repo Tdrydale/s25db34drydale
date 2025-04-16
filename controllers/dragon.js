@@ -114,6 +114,18 @@ exports.dragon_update_Page = async function(req, res) {
         res.send(`{'error': '${err}'}`);
     }
 };
+
+exports.dragon_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+        result = await Dragon.findById(req.query.id)
+        res.render('dragondelete', { title: 'Dragon Delete', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
     
     
   
