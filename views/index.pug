@@ -1,20 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to Assignment 10
-  button(type="button", class="btn btn-secondary", onClick="faster()") Button
-  div(id="faster") add in extra
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/dragons") Take me to dragons
+    br
+    a(href="/logout") Logout
 
-  script.
-    var value = 1;
-    var amt = 2;
-    function faster() {
-      amt = amt * 2;
-      value = value + amt;
-      document.getElementById("faster").innerText = "faster " + value + " times " + amt;
-    }
-
-  p
-
-  a(href="/dragons") Dragons
