@@ -50,8 +50,7 @@ exports.dragon_detail = async function(req, res) {
 };
     
 exports.dragon_update_put = async function(req, res) {
-    console.log(`update on id ${req.params.id} with body
-    ${JSON.stringify(req.body)}`)
+    console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
     try {
         let toUpdate = await Dragon.findById( req.params.id)
         if(req.body.name) toUpdate.name = req.body.name;

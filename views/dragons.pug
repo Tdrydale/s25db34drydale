@@ -8,7 +8,8 @@ block content
     div(class="row m-1")
       each item in items
         div(class="row-sm-2", class="m-1") Dragon #{item.name} (#{item.color}) is #{item.age} #[br]
-          button.btn(class="btn-primary ml-1", onclick='dispatch(\"/dragons/update?id=${item_id}")') Update
+          button.btn(class="btn-primary ml-1", onclick=`dispatch("/dragons/update?id=${item._id}")`) Update
+
 
   script.
     function dispatch(path){
